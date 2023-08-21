@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { CartContextProvider } from "@/Contexts/CartContext";
 import { OrderContextProvider } from "@/Contexts/OrderContext";
@@ -10,7 +10,14 @@ import { useContext, useEffect, useState } from "react";
 import { server } from "../../../server";
 import { EGP } from "../../../pound";
 
-const CreateOrderOne = (context:any) => {
+import { useSearchParams } from "next/navigation";
+
+const CreateOrderOne = (context: any) => {
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("id");
+  const quantity = searchParams.get("quantity");
+
   const [states, setStates] = useState([]);
 
   const [name, setname] = useState("");
@@ -20,46 +27,38 @@ const CreateOrderOne = (context:any) => {
   const [note, setnote] = useState("");
   const [stateShipping, setStateShipping] = useState<any>();
 
-
   const userContext = useContext(UserContextProvider);
 
   const cartContext = useContext(CartContextProvider);
-  
+
   const prodcutContex = useContext(ProductsContextProvider);
 
   const orderContext = useContext(OrderContextProvider);
 
-
-  const route = useRouter()
-
+  const route = useRouter();
 
   const createOrder = async () => {
-    await fetch(`${server}create_order/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user:
-          !userContext?.user?.id || !localStorage?.getItem("email")
-            ? 4
-            : userContext?.user?.id,
-        name: name,
-        address: address,
-        note: note,
-        phone: phone,
-        state: state,
-      }),
-    })
-      .then((e) => e.json())
-      .then(async (e) => {
-        console.log(e)
-        console.log(context)
-        console.log(e?.id)
-        console.log(context?.searchParams?.id)
-        console.log(context?.searchParams?.quantity)
-        if (e.id) {
-          if (name && address && phone && state) {
+    if (name && address && phone?.length == 11 && state) {
+      await fetch(`${server}create_order/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user:
+            !userContext?.user?.id || !localStorage?.getItem("email")
+              ? 4
+              : userContext?.user?.id,
+          name: name,
+          address: address,
+          note: note,
+          phone: phone,
+          state: state,
+        }),
+      })
+        .then((e) => e.json())
+        .then(async (e) => {
+          if (e.id) {
             await fetch(`${server}create_order_item/`, {
               method: "POST",
               headers: {
@@ -67,8 +66,8 @@ const CreateOrderOne = (context:any) => {
               },
               body: JSON.stringify({
                 order_item: e?.id,
-                product: context?.searchParams?.id,
-                quantity: context?.searchParams?.quantity,
+                product: id,
+                quantity: quantity,
               }),
             }).then((e) => {
               if (e.ok) {
@@ -89,13 +88,11 @@ const CreateOrderOne = (context:any) => {
                 );
               }
             });
-          } else {
-            alert("Check the fields");
           }
-        } else {
-          alert("Check the fields");
-        }
-      });
+        });
+    } else {
+      alert("Check the fields");
+    }
   };
 
   useEffect(() => {
@@ -121,12 +118,10 @@ const CreateOrderOne = (context:any) => {
               className="w-[100%] text-end"
               onChange={(e: any) => {
                 setState(e.target.value[0]);
-                setStateShipping(e.target.value.split(',').pop());
+                setStateShipping(e.target.value.split(",").pop());
               }}
             >
-            <option value={''}>
-                {'أختر محافظة'}
-            </option>
+              <option value={""}>{"أختر محافظة"}</option>
               {states.map((e: any) => (
                 <option key={e.id} value={[e.id, e.shipping]}>
                   {e.name}
@@ -136,7 +131,7 @@ const CreateOrderOne = (context:any) => {
           </div>
           <div>
             <TextField
-              inputProps={{min: 0, style: { textAlign: 'end' }}} // the change is here
+              inputProps={{ min: 0, style: { textAlign: "end" } }} // the change is here
               placeholder="ألاسم"
               fullWidth
               id="standard-basic"
@@ -146,7 +141,7 @@ const CreateOrderOne = (context:any) => {
           </div>
           <div className="mt-3">
             <TextField
-              inputProps={{min: 0, style: { textAlign: 'end' }}} // the change is here
+              inputProps={{ min: 0, style: { textAlign: "end" } }} // the change is here
               fullWidth
               placeholder="العنوان"
               id="standard-basic"
@@ -156,10 +151,10 @@ const CreateOrderOne = (context:any) => {
           </div>
           <div className="mt-3">
             <TextField
-              inputProps={{min: 0, style: { textAlign: 'end' }}} // the change is here
+              inputProps={{ min: 0, style: { textAlign: "end" } }} // the change is here
               fullWidth
               placeholder="الهاتف"
-              type="number"
+              type="tel"
               id="standard-basic"
               variant="standard"
               onChange={(e) => setphone(e.target.value)}
@@ -167,7 +162,7 @@ const CreateOrderOne = (context:any) => {
           </div>
           <div className="mt-3">
             <TextField
-              inputProps={{min: 0, style: { textAlign: 'end' }}} // the change is here
+              inputProps={{ min: 0, style: { textAlign: "end" } }} // the change is here
               fullWidth
               placeholder="ملاحظات (أختياري)"
               variant="standard"
@@ -179,7 +174,7 @@ const CreateOrderOne = (context:any) => {
           <Button
             onClick={createOrder}
             className="bg-green-500 mt-5"
-            style={{marginTop:"10px"}}
+            style={{ marginTop: "10px" }}
             color="success"
             variant="contained"
           >
@@ -189,18 +184,18 @@ const CreateOrderOne = (context:any) => {
       </div>
       <div className="finish md:w-[70%] mx-auto w-full mt-10">
         <div>
-            {stateShipping ? 
-            
+          {stateShipping ? (
             <div className="flex flex-row-reverse gap-5">
-                <strong>: سعر الشحن</strong>
-                <strong>{EGP} {stateShipping}</strong>
+              <strong>: سعر الشحن</strong>
+              <strong>
+                {EGP} {stateShipping}
+              </strong>
             </div>
-            
-            : null}
+          ) : null}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CreateOrderOne
+export default CreateOrderOne;

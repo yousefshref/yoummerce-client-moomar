@@ -173,7 +173,7 @@ const page = () => {
           <div className="mt-3">
             <TextField
               fullWidth
-              type="number"
+              type="tel"
               id="standard-basic"
               label="رقم الهاتف"
               variant="standard"
