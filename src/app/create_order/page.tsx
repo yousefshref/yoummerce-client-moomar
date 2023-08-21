@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { server } from "../../../server";
 import { EGP } from "../../../pound";
 
+<<<<<<< HEAD
 import { useSearchParams } from "next/navigation";
 
 const CreateOrderOne = (context: any) => {
@@ -17,8 +18,21 @@ const CreateOrderOne = (context: any) => {
 
   const id = searchParams.get("id");
   const quantity = searchParams.get("quantity");
+=======
+import { useSearchParams } from 'next/navigation'
+
+const CreateOrderOne = (context:any) => {
+
+  const searchParams = useSearchParams()
+ 
+  const id = searchParams.get('id')
+  const quantity = searchParams.get('quantity')
+  
+
+>>>>>>> f5cf7f29ef66833b9b33756883c93271e8918aff
 
   const [states, setStates] = useState([]);
+  
 
   const [name, setname] = useState("");
   const [address, setaddress] = useState("");
@@ -198,4 +212,8 @@ const CreateOrderOne = (context: any) => {
   );
 };
 
+<<<<<<< HEAD
 export default CreateOrderOne;
+=======
+export default CreateOrderOne
+>>>>>>> f5cf7f29ef66833b9b33756883c93271e8918aff
