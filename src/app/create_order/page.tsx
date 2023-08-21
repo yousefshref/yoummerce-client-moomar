@@ -15,7 +15,10 @@ import { useSearchParams } from 'next/navigation'
 const CreateOrderOne = (context:any) => {
   const searchParams = useSearchParams()
  
-  const search = searchParams.get('search')
+  const search = searchParams.get('id')
+
+
+  console.log(search);
 
   
   const [states, setStates] = useState([]);
