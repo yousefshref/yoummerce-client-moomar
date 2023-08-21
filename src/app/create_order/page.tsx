@@ -11,6 +11,7 @@ import { server } from "../../../server";
 import { EGP } from "../../../pound";
 
 const CreateOrderOne = (context:any) => {
+  console.log(context)
   const [states, setStates] = useState([]);
 
   const [name, setname] = useState("");
