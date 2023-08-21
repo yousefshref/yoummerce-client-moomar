@@ -10,8 +10,14 @@ import { useContext, useEffect, useState } from "react";
 import { server } from "../../../server";
 import { EGP } from "../../../pound";
 
+import { useSearchParams } from 'next/navigation'
+
 const CreateOrderOne = (context:any) => {
-  console.log(context)
+  const searchParams = useSearchParams()
+ 
+  const search = searchParams.get('search')
+
+  
   const [states, setStates] = useState([]);
 
   const [name, setname] = useState("");
