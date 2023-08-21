@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+hr{
+    @apply my-2 w-[100%] h-0.5 bg-slate-200
+}
+
+h1{
+    @apply font-medium text-5xl
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p,
+i{
+    @apply text-neutral-800
+}
