@@ -152,10 +152,9 @@ const CreateOrderOne = (context: any) => {
           </div>
           <div className="mt-3">
             <TextField
-              inputProps={{ min: 0, style: { textAlign: "end" } }} // the change is here
+              inputProps={{ min: 0, style: { textAlign: "end" }, inputMode: 'numeric', pattern: '[0-9]*' }} // the change is here
               fullWidth
               placeholder="الهاتف"
-              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               id="standard-basic"
               variant="standard"
               onChange={(e) => setphone(e.target.value)}
