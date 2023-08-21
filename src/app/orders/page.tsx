@@ -97,7 +97,7 @@ const page = () => {
             {
               userContext?.user?.is_staff ? (
                 <div className="flex flex-wrap gap-3 text-end w-fit ms-auto">
-                  <h3 className="text-2xl text-end my-auto"> اجمالي عمولتك ({EGP} {total_commission})</h3>
+                  <h3 className="text-2xl text-end my-auto text-green-700"> [اجمالي عمولتك ({EGP} {total_commission})]</h3>
                   <h1 className="text-4xl text-end">جميع مشترياتك</h1>
                 </div>
               ):(
