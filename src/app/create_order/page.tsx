@@ -17,6 +17,20 @@ const CreateOrderOne = (context: any) => {
 
   const id = searchParams.get("id");
   const quantity = searchParams.get("quantity");
+<<<<<<< HEAD
+=======
+
+import { useSearchParams } from 'next/navigation'
+
+const CreateOrderOne = (context:any) => {
+
+  const searchParams = useSearchParams()
+ 
+  const id = searchParams.get('id')
+  const quantity = searchParams.get('quantity')
+  
+
+>>>>>>> 90b3691d38c22c2533a897e1cb71d143bff63d75
 
   const [states, setStates] = useState([]);
   
@@ -199,4 +213,8 @@ const CreateOrderOne = (context: any) => {
   );
 };
 
+<<<<<<< HEAD
 export default CreateOrderOne;
+=======
+export default CreateOrderOne
+>>>>>>> 90b3691d38c22c2533a897e1cb71d143bff63d75
