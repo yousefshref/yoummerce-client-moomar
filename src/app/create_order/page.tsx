@@ -13,15 +13,16 @@ import { EGP } from "../../../pound";
 import { useSearchParams } from 'next/navigation'
 
 const CreateOrderOne = (context:any) => {
+
   const searchParams = useSearchParams()
  
-  const search = searchParams.get('id')
-
-
-  console.log(search);
-
+  const id = searchParams.get('id')
+  const quantity = searchParams.get('quantity')
   
+
+
   const [states, setStates] = useState([]);
+  
 
   const [name, setname] = useState("");
   const [address, setaddress] = useState("");
@@ -77,8 +78,8 @@ const CreateOrderOne = (context:any) => {
               },
               body: JSON.stringify({
                 order_item: e?.id,
-                product: context?.searchParams?.id,
-                quantity: context?.searchParams?.quantity,
+                product: id,
+                quantity: quantity,
               }),
             }).then((e) => {
               if (e.ok) {
