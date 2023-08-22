@@ -17,9 +17,9 @@ const CreateOrderOne = (context: any) => {
 
   const id = searchParams.get("id");
   const quantity = searchParams.get("quantity");
+  const price = searchParams.get("price");
 
   const [states, setStates] = useState([]);
-  
 
   const [name, setname] = useState("");
   const [address, setaddress] = useState("");
@@ -170,7 +170,11 @@ const CreateOrderOne = (context: any) => {
           </div>
 
           <Button
-            onClick={() => phone?.length == 11 ? createOrder() : alert('رقم الهاتف يجب ان يكون 11 رقم')}
+            onClick={() =>
+              phone?.length == 11
+                ? createOrder()
+                : alert("رقم الهاتف يجب ان يكون 11 رقم")
+            }
             className="bg-green-500 mt-5"
             style={{ marginTop: "10px" }}
             color="success"
@@ -183,8 +187,18 @@ const CreateOrderOne = (context: any) => {
       <div className="finish md:w-[70%] mx-auto w-full mt-10">
         <div>
           {stateShipping ? (
-            <div className="flex flex-col gap-5">
-              <strong>سعر الشحن: {stateShipping} </strong>
+            <div>
+              <div className="flex flex-col gap-5">
+                <strong>سعر الشحن: {stateShipping} </strong>
+              </div>
+              <div className="flex gap-1">
+                <strong>
+                  {" "}
+                  {EGP}{" "}
+                  {Number(quantity) * Number(price) + Number(stateShipping)}{" "}
+                </strong>
+                <strong> :الاجمالي بعد الشحن</strong>
+              </div>
             </div>
           ) : null}
         </div>

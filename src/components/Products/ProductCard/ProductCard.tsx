@@ -97,7 +97,8 @@ const ProductCard = (props: any) => {
                   pathname:'/create_order',
                   query: {
                     id: props?.product?.id,
-                    quantity:quantity
+                    quantity:quantity,
+                    price:props?.product?.sell_price,
                 }
                 }}>
                 <Button
