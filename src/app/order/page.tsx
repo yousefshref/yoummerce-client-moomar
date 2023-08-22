@@ -192,7 +192,7 @@ const page = () => {
           </div>
 
           <Button
-            onClick={createOrder}
+            onClick={() => phone?.length == 11 ? createOrder() : alert('رقم الهاتف يجب ان يكون 11 رقم')}
             className="bg-green-500 mt-5"
             style={{ marginTop: "10px" }}
             color="success"
