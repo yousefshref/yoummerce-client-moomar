@@ -173,7 +173,7 @@ const page = () => {
           <div className="mt-3">
             <TextField
               fullWidth
-              type="tel"
+              inputProps={{ min: 0, style: { textAlign: "end" }, inputMode: 'numeric', pattern: '[0-9]*' }} // the change is here
               id="standard-basic"
               label="رقم الهاتف"
               variant="standard"
