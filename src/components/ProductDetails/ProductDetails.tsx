@@ -68,7 +68,7 @@ const ProductDetails = ({ product }: any) => {
           <div className="my-auto" style={{ maxWidth: "500px" }}>
             <div className="flex flex-wrap gap-2">
               <h2 className="font-medium text-lg">{product?.title}</h2>
-              {product?.stock > 5 ? (
+              {product?.stock < 5 ? (
                 <p className="my-auto text-red-600">
                   {product?.stock} in stock
                 </p>
