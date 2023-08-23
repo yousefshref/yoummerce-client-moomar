@@ -13,6 +13,7 @@ import { AuthContextProvider } from "@/Contexts/AuthContext";
 import { server } from "../../../server";
 import LoginDialog from "@/components/LoginDialog/LoginDialog";
 import Head from "next/head";
+import { Button } from "@mui/material";
 
 
 
@@ -58,7 +59,11 @@ const page = () => {
     }
   };
 
-
+  // pagination
+  const goToPage = (page: any) => {
+    productContexts?.setCurrentPage(page);
+  };
+  // pagination
 
 
   return (
@@ -103,6 +108,31 @@ const page = () => {
           </div>
         ))}
       </div>
+
+      {/* PAGINATION */}
+      <div className="justify-center gap-10 flex mb-10 md:w-[70%] w-[90%] p-5 mx-auto">
+        {productContexts?.currentPage > 1 && (
+          <div>
+            <Button
+              variant="contained"
+              onClick={() => goToPage(productContexts?.currentPage - 1)}
+            >
+              الصفحة السابقة
+            </Button>
+          </div>
+        )}
+        {productContexts?.currentPage < productContexts?.totalPages && (
+          <div>
+            <Button
+              variant="contained"
+              onClick={() => goToPage(productContexts?.currentPage + 1)}
+            >
+              الصفحة التالية
+            </Button>
+          </div>
+        )}
+      </div>
+      {/* PAGINATION */}
       {
         loginDialog ? (
           <LoginDialog setLoginDialog={setLoginDialog} />
