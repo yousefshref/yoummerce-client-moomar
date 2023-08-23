@@ -124,9 +124,6 @@ const page = () => {
                     <div>
                       <strong>{order.phone}</strong>
                     </div>
-                    <div>
-                      <strong>{order.note}</strong>
-                    </div>
                     <hr />
                     <div className="flex gap-1">
                       <strong>{order.total_order}</strong>
@@ -144,6 +141,9 @@ const page = () => {
                     )}
                     <div>
                       <strong>{order.is_arrived_name}</strong>
+                    </div>
+                    <div>
+                      <strong>{order.note}</strong>
                     </div>
                     <div>
                       <strong>{order.date}</strong>
