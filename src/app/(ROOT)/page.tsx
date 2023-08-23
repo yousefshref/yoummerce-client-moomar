@@ -61,6 +61,7 @@ const page = () => {
 
   // pagination
   const goToPage = (page: any) => {
+    window.scrollTo(0, 0)
     productContexts?.setCurrentPage(page);
   };
   // pagination
