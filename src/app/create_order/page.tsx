@@ -25,7 +25,7 @@ const CreateOrderOne = (context: any) => {
   const [name, setname] = useState("");
   const [address, setaddress] = useState("");
   const [phone, setphone] = useState<any>();
-  const [state, setState] = useState<any>({});
+  const [state, setState] = useState<any>();
   const [note, setnote] = useState("");
   const [stateShipping, setStateShipping] = useState<any>();
 
