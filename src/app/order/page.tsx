@@ -13,6 +13,7 @@ import { AuthContextProvider } from "@/Contexts/AuthContext";
 import LoginDialog from "@/components/LoginDialog/LoginDialog";
 import { OrderContextProvider } from "@/Contexts/OrderContext";
 import { ProductsContextProvider } from "@/Contexts/ProductsContext";
+import axios from "axios";
 
 const page = () => {
   const [states, setStates] = useState([]);
@@ -34,78 +35,44 @@ const page = () => {
 
   const route = useRouter();
 
-  const createOrderItem = async (id: any) => {
-    await cartContext?.carts?.map((order: any) => {
-      fetch(`${server}create_order_item/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          order_item: id,
-          product: order.product_info.id,
-          quantity: order.quantity,
-        }),
-      }).then((e) => e.json());
-    });
-  };
-
   const [create, setcreate] = useState(true);
 
   const createOrder = async () => {
-    if (create) {
-      if (
-        name?.length > 0 &&
-        address?.length > 0 &&
-        phone?.length == 11 &&
-        state
-      ) {
-        await fetch(`${server}create_order/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user: userContext?.user?.id,
-            name: name,
-            address: address,
-            note: note,
-            phone: phone,
-            state: state,
-          }),
-        })
-          .then((e) => e.json())
-          .then(async (e) => {
-            if (e.id) {
-              createOrderItem(e.id);
-              await fetch(
-                `${server}cart/${userContext?.user?.id}/delete_user_carts/`,
-                {
-                  method: "DELETE",
-                }
-              ).then(() => {
-                alert(
-                  "Congratulations, you've successfully create your order, be waiting us"
-                );
+    if(create){
+      await axios.post(`${server}create_order/`,{
+        user: userContext?.user?.id,
+        name: name,
+        address: address,
+        note: note,
+        phone: phone,
+        state: state,
+      })
+      .then((e:any) => {
+        if(e.statusText == "OK"){
+          cartContext?.carts?.map(async(order: any) => {
+            await axios.post(`${server}create_order_item/`,{
+              order_item: e.data.id,
+              product: order.product_info.id,
+              quantity: order.quantity,
+            })
+            .then(async(e) => {
+              if(e.statusText == "OK"){
+                await axios.delete(`${server}cart/${userContext?.user?.id}/delete_user_carts/`)
+                alert('😊 تم الطلب بنجاح , يرجي الانتظار قريبا')
                 prodcutContex?.getProducts();
-                route.push("/");
                 cartContext?.getCarts();
                 orderContext?.getOrders();
-              });
-            } else {
-              alert("Something went wrong pleas try againe later");
-            }
+                route.push("/");
+              }
+            })
+            .catch((err) => console.log(err))
           });
-      } else {
-        alert("check the fields");
-      }
-    } else {
-      cartContext?.getCarts();
-      prodcutContex?.getProducts();
-      alert(
-        "you're choosing a quantity more than the stock, Please go to your cart and change the quantity"
-      );
-      route.push("cart/");
+        }
+      })
+      .catch((err) => console.log(err))
+    }else{
+      alert('انت تختار كمية اكبر من المتاح, يرجي تغيير العدد من السلة')
+      route.push('cart/')
     }
   };
 

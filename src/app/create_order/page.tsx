@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { server } from "../../../server";
 import { EGP } from "../../../pound";
+import axios from "axios";
 
 import { useSearchParams } from "next/navigation";
 
@@ -18,7 +19,7 @@ const CreateOrderOne = (context: any) => {
   const id = searchParams.get("id");
   const quantity = searchParams.get("quantity");
   const price = searchParams.get("price");
-
+  const stock = searchParams.get("s")
   const [states, setStates] = useState([]);
 
   const [name, setname] = useState("");
@@ -39,60 +40,50 @@ const CreateOrderOne = (context: any) => {
   const route = useRouter();
 
   const createOrder = async () => {
-    if (name && address && phone?.length == 11 && state) {
-      await fetch(`${server}create_order/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    if (Number(stock) - Number(quantity) > 0) {
+      await axios
+        .post(`${server}create_order/`, {
           user:
             !userContext?.user?.id || !localStorage?.getItem("email")
-              ? 4
+              ? 25
               : userContext?.user?.id,
           name: name,
           address: address,
           note: note,
           phone: phone,
           state: state,
-        }),
-      })
-        .then((e) => e.json())
-        .then(async (e) => {
-          if (e.id) {
-            await fetch(`${server}create_order_item/`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                order_item: e?.id,
+        })
+        .then(async function (response) {
+          if (response.data.id) {
+            await axios
+              .post(`${server}create_order_item/`, {
+                order_item: response.data.id,
                 product: id,
                 quantity: quantity,
-              }),
-            }).then((e) => {
-              if (e.ok) {
-                e.json().then((e: any) => {
-                  if (e.id) {
-                    alert(
-                      "Congratulations, you've successfully create your order, be waiting us"
-                    );
-                    prodcutContex?.getProducts();
-                    route.push("/");
-                    cartContext?.getCarts();
-                    orderContext?.getOrders();
-                  }
-                });
-              } else {
-                alert(
-                  "you are choosing quantity more than the stocks, please decrease it"
-                );
-              }
-            });
+              })
+              .then((e) => {
+                if (e.statusText == "OK") {
+                  alert("😊 تم انشاء طلبك بنجاح, يرجي انتظارنا قريبا");
+                  prodcutContex?.getProducts()
+                  cartContext?.getCarts()
+                  orderContext?.getOrders()
+                  route.push('/')
+                }
+              })
+              .catch(function (error) {
+                alert("حدث شيئا ما, بالرجاء المحاولة مره اخري");
+                console.log(error);
+              });
           }
+        })
+        .catch(function (error) {
+          alert("حدث شيئا ما, بالرجاء المحاولة مره اخري");
+          console.log(error);
         });
-    } else {
-      alert("Check the fields");
+    }
+    else{
+      alert('انت تختار كمية اكبر من المتاحة يرجي تعديل الكمية من السلة')
+      route.push('cart/')
     }
   };
 

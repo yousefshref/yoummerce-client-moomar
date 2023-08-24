@@ -112,6 +112,7 @@ const ProductDetails = ({ product }: any) => {
                   query: {
                     id: product?.id,
                     quantity: quantity,
+                    s:product?.stock
                   },
                 }}
               >

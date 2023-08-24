@@ -99,6 +99,7 @@ const ProductCard = (props: any) => {
                     id: props?.product?.id,
                     quantity:quantity,
                     price:props?.product?.sell_price,
+                    s: props?.product?.stock
                 }
                 }}>
                 <Button
