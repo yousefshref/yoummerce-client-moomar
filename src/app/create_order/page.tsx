@@ -13,13 +13,14 @@ import axios from "axios";
 
 import { useSearchParams } from "next/navigation";
 
-const CreateOrderOne = (context: any) => {
+const page = (context: any) => {
   const searchParams = useSearchParams();
 
   const id = searchParams.get("id");
   const quantity = searchParams.get("quantity");
   const price = searchParams.get("price");
   const stock = searchParams.get("s")
+  
   const [states, setStates] = useState([]);
 
   const [name, setname] = useState("");
@@ -201,4 +202,4 @@ const CreateOrderOne = (context: any) => {
   );
 };
 
-export default CreateOrderOne;
+export default page;
