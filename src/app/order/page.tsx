@@ -159,14 +159,18 @@ const page = () => {
           </div>
 
           <Button
-            onClick={() => phone?.length == 11 ? createOrder() : alert('رقم الهاتف يجب ان يكون 11 رقم')}
-            className="bg-green-500 mt-5"
-            style={{ marginTop: "10px" }}
-            color="success"
-            variant="contained"
-          >
-            أطلب
-          </Button>
+              onClick={() =>
+                phone?.length == 11 && name.length > 0 && address.length > 0  && state
+                  ? createOrder()
+                  : alert("تحقق من الخانات المطلوبة")
+              }
+              className="bg-green-500 mt-5"
+              style={{ marginTop: "10px" }}
+              color="success"
+              variant="contained"
+            >
+              تم
+            </Button>
         </form>
       </div>
       <div className="finish md:w-[70%] mx-auto w-full mt-10">
