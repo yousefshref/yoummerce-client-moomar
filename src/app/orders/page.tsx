@@ -20,14 +20,10 @@ const page = () => {
   const cartContext = useContext(CartContextProvider);
   const userContext = useContext(UserContextProvider);
 
-
   const total_commission = orderContext?.order?.reduce(
     (a: any, v: any) => (a = a + v.total_commission),
     0
-  )
-  
-
-
+  );
 
   return (
     <>
@@ -94,18 +90,19 @@ const page = () => {
         <div className="orders md:w-[85%] md:mx-auto px-10 mt-10">
           <hr />
           <div className="orders">
-            {
-              userContext?.user?.is_staff ? (
-                <div className="flex flex-wrap gap-3 text-end w-fit ms-auto">
-                  <h3 className="text-2xl text-end my-auto text-green-700"> [اجمالي عمولتك ({EGP} {total_commission})]</h3>
-                  <h1 className="text-4xl text-end">جميع مشترياتك</h1>
-                </div>
-              ):(
-                <div className="flex flex-wrap gap-3 text-end w-fit ms-auto">
-                  <h1 className="text-4xl text-end">جميع مشترياتك</h1>
-                </div>
-              )
-            }
+            {userContext?.user?.is_staff ? (
+              <div className="flex flex-wrap gap-3 text-end w-fit ms-auto">
+                <h3 className="text-2xl text-end my-auto text-green-700">
+                  {" "}
+                  [اجمالي عمولتك ({EGP} {total_commission})]
+                </h3>
+                <h1 className="text-4xl text-end">جميع مشترياتك</h1>
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-3 text-end w-fit ms-auto">
+                <h1 className="text-4xl text-end">جميع مشترياتك</h1>
+              </div>
+            )}
             <hr />
             {orderContext?.order?.map((order: any) => (
               <div key={order.id} className="mt-5">
@@ -141,15 +138,19 @@ const page = () => {
                     )}
                     <div>
                       <strong>{order.is_arrived_name}</strong>
+                      <strong>{' :الحالة'}</strong>
                     </div>
                     <div>
-                      <strong>{": التاريخ"}</strong>
                       <strong>{order.date}</strong>
+                      <strong>{' :التاريخ'}</strong>
                     </div>
-                    <div className="text-yellow-500">
-                      <strong>{": ملاحظة"}</strong>
-                      <strong>{order.note}</strong>
-                    </div>
+                    {order.note ? (
+                      <div className="text-red-700">
+                        <strong>{" :ملاحظة"}</strong>
+                        <br />
+                        <strong>{order.note}</strong>
+                      </div>
+                    ) : null}
                   </div>
                   <div className="order_details w-[330px] h-[400px] overflow-y-scroll">
                     {order?.order_item_info?.map((order_item: any) => (
