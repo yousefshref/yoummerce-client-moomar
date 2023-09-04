@@ -143,10 +143,12 @@ const page = () => {
                       <strong>{order.is_arrived_name}</strong>
                     </div>
                     <div>
-                      <strong>{order.note}</strong>
-                    </div>
-                    <div>
+                      <strong>{": التاريخ"}</strong>
                       <strong>{order.date}</strong>
+                    </div>
+                    <div className="text-yellow-500">
+                      <strong>{": ملاحظة"}</strong>
+                      <strong>{order.note}</strong>
                     </div>
                   </div>
                   <div className="order_details w-[330px] h-[400px] overflow-y-scroll">

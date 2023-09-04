@@ -26,6 +26,7 @@ const page = (context: any) => {
   const [name, setname] = useState("");
   const [address, setaddress] = useState("");
   const [phone, setphone] = useState<any>();
+  const [phone2, setphone2] = useState<any>();
   const [state, setState] = useState<any>();
   const [note, setnote] = useState("");
   const [stateShipping, setStateShipping] = useState<any>();
@@ -55,6 +56,7 @@ const page = (context: any) => {
           address: address,
           note: note,
           phone: phone,
+          phone2: phone2,
           state: state,
         })
         .then(async function (response) {
@@ -119,8 +121,8 @@ const page = (context: any) => {
                 <select
                   className="w-[100%]"
                   onChange={(e: any) => {
-                    setState(e.target.value[0]);
-                    setStateShipping(e.target.value.split(",").pop());
+                    setState(e.target.value.split(',')[0]);
+                    setStateShipping(e.target.value.split(',')[1]);
                   }}
                 >
                   <option value={""}>{"أختر المحافظة"}</option>
@@ -157,6 +159,16 @@ const page = (context: any) => {
                   label="رقم الهاتف"
                   variant="standard"
                   onChange={(e) => setphone(e.target.value)}
+                />
+              </div>
+              <div className="mt-3">
+                <TextField
+                  fullWidth
+                  type="tel"
+                  id="standard-basic"
+                  label="رقم الهاتف اخر (اخياري)"
+                  variant="standard"
+                  onChange={(e) => setphone2(e.target.value)}
                 />
               </div>
               <div className="mt-3">
