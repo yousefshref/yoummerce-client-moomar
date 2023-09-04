@@ -121,7 +121,7 @@ const page = () => {
                     <div>
                       <strong>{order.phone}</strong>
                     </div>
-                    {order.phone2 == 'phone2' || order.phone2 == '' ? null : (
+                    {order.phone2 == 'phone2' || order.phone2 == '' || order.phone2 == 0 ? null : (
                       <div>
                         <strong>{order.phone2}</strong>
                       </div>
