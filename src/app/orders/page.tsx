@@ -137,8 +137,8 @@ const page = () => {
                       </div>
                     )}
                     <div className="flex gap-3">
-                      <strong>{' :الحالة'}</strong>
                       <strong>{order.is_arrived_name}</strong>
+                      <strong>{' :الحالة'}</strong>
                     </div>
                     <div className="flex gap-3">
                       <strong>{order.date}</strong>
