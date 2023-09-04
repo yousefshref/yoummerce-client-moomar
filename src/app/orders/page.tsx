@@ -141,12 +141,17 @@ const page = () => {
                     )}
                     <div className="flex gap-3">
                       <strong>{order.is_arrived_name}</strong>
-                      <strong>{' :الحالة'}</strong>
+                      <strong className="text-red-700 text-xs my-auto">
+                        (الحالة)
+                      </strong>
                     </div>
                     <div className="flex gap-3">
                       <strong>{order.date}</strong>
-                      <strong>{' :التاريخ'}</strong>
+                      <strong className="text-red-700 text-xs my-auto">
+                        (التاريخ)
+                      </strong>
                     </div>
+                    <hr />
                     {order.note ? (
                       <div className="text-red-700">
                         <strong>{" :ملاحظة"}</strong>
