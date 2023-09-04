@@ -121,9 +121,11 @@ const page = () => {
                     <div>
                       <strong>{order.phone}</strong>
                     </div>
-                    <div>
-                      <strong>{order.phone2}</strong>
-                    </div>
+                    {order.phone2 == 'phone2' || order.phone2 == '' ? null : (
+                      <div>
+                        <strong>{order.phone2}</strong>
+                      </div>
+                    )}
                     <hr />
                     <div className="flex gap-1">
                       <strong>{order.total_order}</strong>
