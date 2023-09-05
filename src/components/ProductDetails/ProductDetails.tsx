@@ -105,48 +105,50 @@ const ProductDetails = ({ product }: any) => {
               value={quantity}
               onChange={(e: any) => setQuanity(e.target.value)}
             />
-            {!userContext?.user?.id || !localStorage?.getItem("email") ? (
+            <div className="flex flex-col gap-3">
+              <Button
+                onClick={() =>
+                  addToCart(userContext.user, product.id, quantity)
+                }
+                fullWidth
+                className="bg-slate-500"
+                variant="contained"
+              >
+                أضف للعربة
+              </Button>
               <Link
                 href={{
                   pathname: "/create_order",
                   query: {
                     id: product?.id,
                     quantity: quantity,
-                    s:product?.stock
                   },
                 }}
               >
-                <Button fullWidth variant="outlined" color="success">
+                <Button
+                  className="bg-green-600"
+                  fullWidth
+                  variant="outlined"
+                  color="success"
+                >
                   أشتري الأن
                 </Button>
               </Link>
-            ) : (
-              <div className="flex flex-col gap-3">
-                <Button
-                  onClick={() =>
-                    addToCart(userContext.user, product.id, quantity)
-                  }
-                  fullWidth
-                  className="bg-slate-500"
-                  variant="contained"
-                >
-                  أضف للعربة
-                </Button>
-                <Link
-                  href={{
-                    pathname: "/create_order",
-                    query: {
-                      id: product?.id,
-                      quantity: quantity,
-                    },
-                  }}
-                >
-                  <Button className="bg-green-600" fullWidth variant="outlined" color="success">
-                    أشتري الأن
-                  </Button>
-                </Link>
-              </div>
-            )}
+            </div>
+            <Link
+              href={{
+                pathname: "/create_order",
+                query: {
+                  id: product?.id,
+                  quantity: quantity,
+                  s: product?.stock,
+                },
+              }}
+            >
+              <Button fullWidth variant="outlined" color="success">
+                أشتري الأن
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
