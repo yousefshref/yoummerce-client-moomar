@@ -26,6 +26,14 @@ const page = () => {
     0
   );
 
+
+  // pagination
+  const goToPage = (page: any) => {
+    window.scrollTo(0, 0)
+    orderContext?.setCurrentPage(page);
+  };
+  // pagination
+
   return (
     <>
       <div>
@@ -106,9 +114,6 @@ const page = () => {
               </div>
             )}
             <hr />
-
-
-            
             {orderContext?.order?.map((order: any) => (
               <div key={order.id} className="mt-5">
                 <OrderPreview order={order} userContext={userContext} />
@@ -116,6 +121,31 @@ const page = () => {
             ))}
           </div>
         </div>
+
+        {/* PAGINATION */}
+        <div className="justify-center gap-10 flex mb-10 md:w-[70%] w-[90%] p-5 mx-auto">
+          {orderContext?.currentPage > 1 && (
+            <div>
+              <Button
+                variant="contained"
+                onClick={() => goToPage(orderContext?.currentPage - 1)}
+              >
+                الصفحة السابقة
+              </Button>
+            </div>
+          )}
+          {orderContext?.currentPage < orderContext?.totalPages && (
+            <div>
+              <Button
+                variant="contained"
+                onClick={() => goToPage(orderContext?.currentPage + 1)}
+              >
+                الصفحة التالية
+              </Button>
+            </div>
+          )}
+      </div>
+      {/* PAGINATION */}
       </div>
     </>
   );

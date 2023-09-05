@@ -16,19 +16,25 @@ const OrderContext = ({children}) => {
     const [status, setstatus] = useState('')
     const [from, setfrom] = useState('')
     const [to, setto] = useState('')
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
 
     const getOrders = async () => {
-        await fetch(`${server}orders/${userContext?.user?.id}?name=${name}&status=${status}&from=${from}&to=${to}`)
+        await fetch(`${server}orders/${userContext?.user?.id}?name=${name}&status=${status}&from=${from}&to=${to}&page_number=${currentPage}`)
             .then((e) => e.json())
-            .then((e) => setorder(e))
+            .then((e) => {
+              console.log(e);
+              setorder(e.results)
+              setTotalPages(e.totalPages);
+            })
     }
     useEffect(() => {
         userContext?.user?.id ? getOrders() : null
-    }, [name, status, from, to, userContext?.user?.id])
+    }, [name, status, from, to, userContext?.user?.id, currentPage])
 
   return (
-    <OrderContextProvider.Provider value={{order, setname, setstatus, setfrom, setto, getOrders}}>
+    <OrderContextProvider.Provider value={{order, setname, setstatus, setfrom, setto, getOrders, setCurrentPage, totalPages, currentPage}}>
         {children}
     </OrderContextProvider.Provider>
   )
