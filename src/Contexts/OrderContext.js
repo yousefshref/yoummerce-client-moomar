@@ -24,7 +24,6 @@ const OrderContext = ({children}) => {
         await fetch(`${server}orders/${userContext?.user?.id}?name=${name}&status=${status}&from=${from}&to=${to}&page_number=${currentPage}`)
             .then((e) => e.json())
             .then((e) => {
-              console.log(e);
               setorder(e.results)
               setTotalPages(e.totalPages);
             })
