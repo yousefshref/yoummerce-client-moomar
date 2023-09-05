@@ -135,20 +135,6 @@ const ProductDetails = ({ product }: any) => {
                 </Button>
               </Link>
             </div>
-            <Link
-              href={{
-                pathname: "/create_order",
-                query: {
-                  id: product?.id,
-                  quantity: quantity,
-                  s: product?.stock,
-                },
-              }}
-            >
-              <Button fullWidth variant="outlined" color="success">
-                أشتري الأن
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
