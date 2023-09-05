@@ -14,6 +14,7 @@ import { UserContextProvider } from "@/Contexts/UserContext";
 import { OrderContextProvider } from "@/Contexts/OrderContext";
 import { CartContextProvider } from "@/Contexts/CartContext";
 import { EGP } from "../../../pound";
+import OrderPreview from "@/components/Order/OrderPreview";
 
 const page = () => {
   const orderContext = useContext(OrderContextProvider);
@@ -87,6 +88,7 @@ const page = () => {
           </div>
         </div>
 
+
         <div className="orders md:w-[85%] md:mx-auto px-10 mt-10">
           <hr />
           <div className="orders">
@@ -104,91 +106,12 @@ const page = () => {
               </div>
             )}
             <hr />
+
+
+            
             {orderContext?.order?.map((order: any) => (
               <div key={order.id} className="mt-5">
-                <strong>الأوردر:</strong>
-                <div className="order flex flex-wrap justify-center gap-5 md:justify-between border p-1 rounded-md my-4 shadow-xl">
-                  <div className="order_up flex flex-col justify-center">
-                    <div>
-                      <strong>{order?.name}</strong>
-                    </div>
-                    <div>
-                      <strong>{order.state_name?.name}</strong>
-                    </div>
-                    <div>
-                      <strong>{order.address}</strong>
-                    </div>
-                    <div>
-                      <strong>{order.phone}</strong>
-                    </div>
-                    {order.phone2 == 'phone2' || order.phone2 == '' || order.phone2 == 0 ? null : (
-                      <div>
-                        <strong>{order.phone2}</strong>
-                      </div>
-                    )}
-                    <hr />
-                    <div className="flex gap-1">
-                      <strong>{order.total_order}</strong>
-                      <strong className="text-red-700 text-xs my-auto">
-                        (اجمالي الاوردر)
-                      </strong>
-                    </div>
-                    {userContext?.user?.is_staff && (
-                      <div className="flex gap-1">
-                        <strong>{order.total_commission}</strong>
-                        <strong className="text-red-700 text-xs my-auto">
-                          (العمولة)
-                        </strong>
-                      </div>
-                    )}
-                    <div className="flex gap-3">
-                      <strong>{order.is_arrived_name}</strong>
-                      <strong className="text-red-700 text-xs my-auto">
-                        (الحالة)
-                      </strong>
-                    </div>
-                    <div className="flex gap-3">
-                      <strong>{order.date}</strong>
-                      <strong className="text-red-700 text-xs my-auto">
-                        (التاريخ)
-                      </strong>
-                    </div>
-                    <hr />
-                    {order.note ? (
-                      <div className="text-red-700">
-                        <strong>{" :ملاحظة"}</strong>
-                        <br />
-                        <strong>{order.note}</strong>
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="order_details w-[330px] h-[400px] overflow-y-scroll">
-                    {order?.order_item_info?.map((order_item: any) => (
-                      <div
-                        className="order_detail border p-1 m-1"
-                        key={order_item.id}
-                      >
-                        <div className="product_details">
-                          <div>
-                            <ImageSlider obj={order_item?.product_info} />
-                          </div>
-                          <div>
-                            <strong>
-                              {order_item.product_info?.title.toUpperCase()}
-                            </strong>
-                          </div>
-                        </div>
-                        <div className="order_detail_down text-center">
-                          <hr />
-                          <div>
-                            <strong>{"الكمية: "}</strong>
-                            <strong>{order_item.quantity}</strong>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <OrderPreview order={order} userContext={userContext} />
               </div>
             ))}
           </div>
