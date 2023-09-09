@@ -26,6 +26,8 @@ const page = () => {
   const [note, setnote] = useState("");
   const [stateShipping, setStateShipping] = useState<any>();
 
+  const [successMessage, setSuccessMessage] = useState<any>(false);
+
   const userContext = useContext(UserContextProvider);
 
   const cartContext = useContext(CartContextProvider);
@@ -68,7 +70,7 @@ const page = () => {
                     await axios.delete(
                       `${server}cart/${userContext?.user?.id}/delete_user_carts/`
                     );
-                    alert("😊 تم الطلب بنجاح , يرجي الانتظار قريبا");
+                    setSuccessMessage(true)
                     prodcutContex?.getProducts();
                     cartContext?.getCarts();
                     orderContext?.getOrders();
@@ -104,6 +106,11 @@ const page = () => {
     };
     getStates();
   }, [state]);
+
+
+  useEffect(() => {
+    successMessage == true ? alert("😊 تم الطلب بنجاح , يرجي الانتظار قريبا") : null
+  }, [successMessage])
 
   return (
     <>

@@ -14,39 +14,39 @@ import LoginDialog from "../LoginDialog/LoginDialog";
 import Link from "next/link";
 
 const ProductDetails = ({ product }: any) => {
-  const cartContext = useContext(CartContextProvider);
+  // const cartContext = useContext(CartContextProvider);
   const userContext = useContext(UserContextProvider);
-  const authContext = useContext(AuthContextProvider);
+  // const authContext = useContext(AuthContextProvider);
 
   const [quantity, setQuanity] = useState<any>(1);
 
   // handle add to cart
   const [loginDialog, setLoginDialog] = useState<any>(false);
 
-  const addToCart = async (user: any, product: any, quantity: any) => {
-    if (!localStorage?.getItem("email") || !authContext?.isUserExist) {
-      setLoginDialog(true);
-    } else {
-      await fetch(`${server}cart/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: user.id,
-          product: product,
-          quantity: quantity,
-        }),
-      })
-        .then((e) => e.json())
-        .then((e) => {
-          alert(`You've added/changed ${e.product_info.title} to your cart`);
-          setQuanity(1);
-          // window.location.reload()
-        })
-        .finally(() => cartContext?.getCarts());
-    }
-  };
+  // const addToCart = async (user: any, product: any, quantity: any) => {
+  //   if (!localStorage?.getItem("email") || !authContext?.isUserExist) {
+  //     setLoginDialog(true);
+  //   } else {
+  //     await fetch(`${server}cart/`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         user: user.id,
+  //         product: product,
+  //         quantity: quantity,
+  //       }),
+  //     })
+  //       .then((e) => e.json())
+  //       .then((e) => {
+  //         alert(`You've added/changed ${e.product_info.title} to your cart`);
+  //         setQuanity(1);
+  //         // window.location.reload()
+  //       })
+  //       .finally(() => cartContext?.getCarts());
+  //   }
+  // };
   return (
     <>
       <NextSeo
