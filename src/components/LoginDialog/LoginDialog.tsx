@@ -114,11 +114,11 @@ const LoginDialog = (props:any) => {
     }, [password])
   return (
     <div className="h-full w-full bg-black bg-opacity-60 fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] shadow-2xl z-10">
-        <div className="relative text-center top-[40%] translate-y-[-50%] bg-white p-4 w-fit mx-auto rounded-md shadow-2xl hover:scale-105 hover:bg-neutral-200 transition">
+        <div className="relative w-[90%] text-center top-[40%] translate-y-[-50%] bg-white p-4 md:w-fit mx-auto rounded-md shadow-2xl hover:scale-105 hover:bg-neutral-200 transition">
             <div className="w-fit ms-0 mb-2">
                 <Button onClick={() => props?.setLoginDialog(false)} variant="outlined" size="small" color="error">أغلق</Button>
             </div>
-            <h1 className="transition text-neutral-700">سجل الدخول في {Yoummerce}</h1>
+            <h1 className="transition text-2xl md:text-5xl text-neutral-700">سجل الدخول في {Yoummerce}</h1>
             <small className="transition text-neutral-700">عند تسجيل الدخول سيكون لك ميزات كثيرة</small>
             <hr />
             {
@@ -132,7 +132,7 @@ const LoginDialog = (props:any) => {
                   <TextField onChange={(e) => setpassword(e.target.value)} fullWidth label="Password" variant="standard" />
                 </div>
                 <div className="mt-5">
-                  <Button onClick={login} variant="contained">سجل الدخول</Button>
+                  <Button className="bg-blue-400" onClick={login} variant="contained">سجل الدخول</Button>
                 </div>
                 <div className="mt-5">
                   <p>ليس لديك حساب؟ <span onClick={() => setlogin_state(false)} className="text-sky-700 cursor-pointer">انشئ حساب جديد</span></p>

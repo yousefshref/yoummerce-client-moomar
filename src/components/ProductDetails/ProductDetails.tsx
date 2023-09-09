@@ -106,7 +106,7 @@ const ProductDetails = ({ product }: any) => {
               onChange={(e: any) => setQuanity(e.target.value)}
             />
             <div className="flex flex-col gap-3">
-              <Button
+              {/* <Button
                 onClick={() =>
                   addToCart(userContext.user, product.id, quantity)
                 }
@@ -115,18 +115,19 @@ const ProductDetails = ({ product }: any) => {
                 variant="contained"
               >
                 أضف للعربة
-              </Button>
+              </Button> */}
               <Link
                 href={{
                   pathname: "/create_order",
                   query: {
                     id: product?.id,
                     quantity: quantity,
+                    s: product?.stock,
                   },
                 }}
               >
                 <Button
-                  className="bg-green-600"
+                  // className="bg-green-600"
                   fullWidth
                   variant="outlined"
                   color="success"

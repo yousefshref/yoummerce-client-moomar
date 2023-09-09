@@ -91,6 +91,7 @@ const page = () => {
     cartContext?.carts?.map((e: any) => {
       if (e.product_info.stock - e.quantity < 0) {
         setcreate(false);
+        console.log('no stock available');
       }
     });
   }, [cartContext?.carts]);
