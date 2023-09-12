@@ -43,6 +43,7 @@ const OrderPreview = ({ order, userContext }: any) => {
           ) : null}
         </div>
         {/* cancel order */}
+        <span>{order?.order_item_info?.length} :عدد المنتجات</span>
         <div className="order flex justify-center gap-5 md:justify-between border p-1 rounded-md my-4 shadow-xl">
           <div className="order_up flex flex-col justify-center">
             <div>
@@ -99,29 +100,32 @@ const OrderPreview = ({ order, userContext }: any) => {
             ) : null}
           </div>
           <div className="order_details w-[330px] h-[400px] overflow-y-scroll">
-            {order?.order_item_info?.map((order_item: any) => (
+            {order?.order_item_info?.map((order_item: any) =>
               order_item?.is_returned == true ? null : (
-                <div className="order_detail border p-1 m-1" key={order_item.id}>
-                <div className="product_details">
-                  <div>
-                    <ImageSlider obj={order_item?.product_info} />
+                <div
+                  className="order_detail border p-1 m-1"
+                  key={order_item.id}
+                >
+                  <div className="product_details">
+                    <div>
+                      <ImageSlider obj={order_item?.product_info} />
+                    </div>
+                    <div>
+                      <strong>
+                        {order_item.product_info?.title.toUpperCase()}
+                      </strong>
+                    </div>
                   </div>
-                  <div>
-                    <strong>
-                      {order_item.product_info?.title.toUpperCase()}
-                    </strong>
+                  <div className="order_detail_down text-center">
+                    <hr />
+                    <div>
+                      <strong>{"الكمية: "}</strong>
+                      <strong>{order_item.quantity}</strong>
+                    </div>
                   </div>
                 </div>
-                <div className="order_detail_down text-center">
-                  <hr />
-                  <div>
-                    <strong>{"الكمية: "}</strong>
-                    <strong>{order_item.quantity}</strong>
-                  </div>
-                </div>
-              </div>
               )
-            ))}
+            )}
           </div>
         </div>
       </div>

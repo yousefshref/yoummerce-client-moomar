@@ -26,6 +26,8 @@ const page = () => {
     0
   );
 
+  const total_orders = orderContext?.order?.length
+
 
   // pagination
   const goToPage = (page: any) => {
@@ -106,10 +108,12 @@ const page = () => {
                   {" "}
                   [اجمالي عمولتك ({EGP} {total_commission})]
                 </h3>
+                <span className="my-auto">{total_orders} :عدد الاوردرات</span>
                 <h1 className="text-4xl text-end">جميع مشترياتك</h1>
               </div>
             ) : (
               <div className="flex flex-wrap gap-3 text-end w-fit ms-auto">
+                <span className="my-auto">{total_orders} :عدد الاوردرات</span>
                 <h1 className="text-4xl text-end">جميع مشترياتك</h1>
               </div>
             )}
