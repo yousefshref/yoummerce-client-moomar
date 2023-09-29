@@ -123,7 +123,7 @@ const ProductDetails = ({ product }: any) => {
                     id: product?.id,
                     quantity: quantity,
                     s: product?.stock,
-                    free_shipping: props?.product?.free_shipping ? props?.product?.free_shipping : null,
+                    free_shipping: product?.free_shipping ? product?.free_shipping : null,
                   },
                 }}
               >
