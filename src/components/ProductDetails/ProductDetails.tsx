@@ -122,6 +122,7 @@ const ProductDetails = ({ product }: any) => {
                   query: {
                     id: product?.id,
                     quantity: quantity,
+                    price:product?.sell_price,
                     s: product?.stock,
                     free_shipping: product?.free_shipping ? product?.free_shipping : null,
                   },
