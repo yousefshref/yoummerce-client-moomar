@@ -223,7 +223,7 @@ const page = (context  ) => {
                       <strong> :الاجمالي بعد الشحن</strong>
                     </div>
                   </div>
-                ) : stateShipping && !free_shipping && <div>
+                ) : stateShipping && free_shipping && <div>
                 <div className="flex flex-col gap-5">
                   <strong>الشحن مجاني </strong>
                 </div>
