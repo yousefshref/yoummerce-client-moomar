@@ -207,7 +207,7 @@ const page = (context  ) => {
             </form>
           </div>
           <div className="finish md:w-[70%] mx-auto w-full mt-10">
-            <div>
+            <div className="w-fit mx-auto">
               {
                 stateShipping && !free_shipping ? (
                   <div>
@@ -223,9 +223,9 @@ const page = (context  ) => {
                       <strong> :الاجمالي بعد الشحن</strong>
                     </div>
                   </div>
-                ) : <div>
+                ) : stateShipping && !free_shipping && <div>
                 <div className="flex flex-col gap-5">
-                  <strong>الشحن مجاني 🤑 </strong>
+                  <strong>الشحن مجاني </strong>
                 </div>
                 <div className="flex gap-1">
                   <strong>
