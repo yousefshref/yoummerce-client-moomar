@@ -109,9 +109,9 @@ const LoginDialog = (props:any) => {
     }
 
     // check username
-    useEffect(() => {
-      password.length < 20 ? setPassErr(true) : setPassErr(false)
-    }, [password])
+    // useEffect(() => {
+    //   password.length < 20 ? setPassErr(true) : setPassErr(false)
+    // }, [password])
   return (
     <div className="h-full w-full bg-black bg-opacity-60 fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] shadow-2xl z-10">
         <div className="relative w-[90%] text-center top-[40%] translate-y-[-50%] bg-white p-4 md:w-fit mx-auto rounded-md shadow-2xl hover:scale-105 hover:bg-neutral-200 transition">
@@ -148,7 +148,7 @@ const LoginDialog = (props:any) => {
                 <div className="mt-5">
                   <TextField onChange={(e) => setemail(e.target.value)} fullWidth label="Email" variant="standard" />
                 </div>
-                <div className="mt-5">
+                {/* <div className="mt-5">
                   <TextField onChange={(e) => setpassword(e.target.value)} fullWidth label="Password" variant="standard" />
                   {
                     passErr ? (
@@ -157,7 +157,7 @@ const LoginDialog = (props:any) => {
                     </div>
                     ):null
                   }
-                </div>
+                </div> */}
                 <div className="mt-5">
                   <Button className="bg-blue-600" onClick={register} variant="contained">انشئ حساب</Button>
                 </div>

@@ -13,23 +13,24 @@ import axios from "axios";
 
 import { useSearchParams } from "next/navigation";
 
-const page = (context: any) => {
+const page = (context  ) => {
   const searchParams = useSearchParams();
 
   const id = searchParams.get("id");
   const quantity = searchParams.get("quantity");
   const price = searchParams.get("price");
   const stock = searchParams.get("s");
+  const free_shipping = searchParams.get("free_shipping");
 
   const [states, setStates] = useState([]);
 
   const [name, setname] = useState("");
   const [address, setaddress] = useState("");
-  const [phone, setphone] = useState<any>();
-  const [phone2, setphone2] = useState<any>();
-  const [state, setState] = useState<any>();
+  const [phone, setphone] = useState  ();
+  const [phone2, setphone2] = useState  ();
+  const [state, setState] = useState  ();
   const [note, setnote] = useState("");
-  const [stateShipping, setStateShipping] = useState<any>();
+  const [stateShipping, setStateShipping] = useState  ();
 
   const userContext = useContext(UserContextProvider);
 
@@ -41,7 +42,7 @@ const page = (context: any) => {
 
   const route = useRouter();
 
-  const [loading, setloading] = useState<any>(false);
+  const [loading, setloading] = useState  (false);
 
 
   const createOrder = async () => {
@@ -94,6 +95,8 @@ const page = (context: any) => {
     }
   };
 
+  
+
   useEffect(() => {
     const getStates = async () => {
       await fetch(`${server}states/`)
@@ -102,6 +105,8 @@ const page = (context: any) => {
     };
     getStates();
   }, [state]);
+
+
 
   return (
     <>
@@ -118,22 +123,6 @@ const page = (context: any) => {
               onSubmit={createOrder}
               className="md:w-[70%] mx-auto w-full from-gray-200 bg-gradient-to-t p-4 rounded-lg shadow-2xl"
             >
-              <div className="mt-5 w-full">
-                <select
-                  className="w-[100%]"
-                  onChange={(e: any) => {
-                    setState(e.target.value.split(',')[0]);
-                    setStateShipping(e.target.value.split(',')[1]);
-                  }}
-                >
-                  <option value={""}>{"أختر المحافظة"}</option>
-                  {states.map((e: any) => (
-                    <option key={e.id} value={[e.id, e.shipping]}>
-                      {e.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
               <div>
                 <TextField
                   fullWidth
@@ -142,6 +131,22 @@ const page = (context: any) => {
                   variant="standard"
                   onChange={(e) => setname(e.target.value)}
                 />
+              </div>
+              <div className="mt-5 w-full border border-neutral-600 p-1">
+                <select
+                  className="w-[100%]"
+                  onChange={(e  ) => {
+                    setState(e.target.value.split(',')[0]);
+                    setStateShipping(e.target.value.split(',')[1]);
+                  }}
+                >
+                  <option value={""}>{"أختر المحافظة"}</option>
+                  {states.map((e  ) => (
+                    <option key={e.id} value={[e.id, e.shipping]}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="mt-3">
                 <TextField
@@ -203,21 +208,35 @@ const page = (context: any) => {
           </div>
           <div className="finish md:w-[70%] mx-auto w-full mt-10">
             <div>
-              {stateShipping ? (
-                <div>
-                  <div className="flex flex-col gap-5">
-                    <strong>سعر الشحن: {stateShipping} </strong>
+              {
+                stateShipping && !free_shipping ? (
+                  <div>
+                    <div className="flex flex-col gap-5">
+                      <strong>سعر الشحن: {stateShipping} </strong>
+                    </div>
+                    <div className="flex gap-1">
+                      <strong>
+                        {" "}
+                        {EGP}{" "}
+                        {Number(quantity) * Number(price) + Number(stateShipping)}{" "}
+                      </strong>
+                      <strong> :الاجمالي بعد الشحن</strong>
+                    </div>
                   </div>
-                  <div className="flex gap-1">
-                    <strong>
-                      {" "}
-                      {EGP}{" "}
-                      {Number(quantity) * Number(price) + Number(stateShipping)}{" "}
-                    </strong>
-                    <strong> :الاجمالي بعد الشحن</strong>
-                  </div>
+                ) : <div>
+                <div className="flex flex-col gap-5">
+                  <strong>الشحن مجاني 🤑 </strong>
                 </div>
-              ) : null}
+                <div className="flex gap-1">
+                  <strong>
+                    {" "}
+                    {EGP}{" "}
+                    {Number(quantity) * Number(price)}{" "}
+                  </strong>
+                  <strong> :الاجمالي</strong>
+                </div>
+              </div>
+              }
             </div>
           </div>
         </>

@@ -14,6 +14,7 @@ import LoginDialog from "@/components/LoginDialog/LoginDialog";
 import { OrderContextProvider } from "@/Contexts/OrderContext";
 import { ProductsContextProvider } from "@/Contexts/ProductsContext";
 import axios from "axios";
+import { exit } from "process";
 
 const page = () => {
   const [states, setStates] = useState([]);
@@ -112,6 +113,20 @@ const page = () => {
     successMessage == true ? alert("😊 تم الطلب بنجاح , يرجي الانتظار قريبا") : null
   }, [successMessage])
 
+
+  const [isfree, setisfree] = useState(false)
+
+  useEffect(() => {
+    for (var i = 0; i < cartContext?.carts?.length; i++) {
+      if (cartContext?.carts[i]?.product_info?.free_shipping) {
+        setisfree(true)
+        break
+      } else {
+        setisfree(false)
+      }
+    }
+  }, [cartContext?.carts?.length])
+
   return (
     <>
       {loading ? (
@@ -127,7 +142,16 @@ const page = () => {
               onSubmit={createOrder}
               className="md:w-[70%] mx-auto w-full from-gray-200 bg-gradient-to-t p-4 rounded-lg shadow-2xl"
             >
-              <div className="mt-5 w-full">
+              <div>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="الأسم"
+                  variant="standard"
+                  onChange={(e) => setname(e.target.value)}
+                />
+              </div>
+              <div className="mt-5 w-full border border-neutral-600 p-1">
                 <select
                   className="w-[100%]"
                   onChange={(e: any) => {
@@ -142,15 +166,6 @@ const page = () => {
                     </option>
                   ))}
                 </select>
-              </div>
-              <div>
-                <TextField
-                  fullWidth
-                  id="standard-basic"
-                  label="الأسم"
-                  variant="standard"
-                  onChange={(e) => setname(e.target.value)}
-                />
               </div>
               <div className="mt-3">
                 <TextField
@@ -205,9 +220,9 @@ const page = () => {
               <Button
                 onClick={() =>
                   phone?.length == 11 &&
-                  name.length > 0 &&
-                  address.length > 0 &&
-                  state
+                    name.length > 0 &&
+                    address.length > 0 &&
+                    state
                     ? createOrder()
                     : alert("تحقق من الخانات المطلوبة")
                 }
@@ -222,18 +237,31 @@ const page = () => {
           </div>
           <div className="finish md:w-[70%] mx-auto w-full mt-10">
             <div>
-              {stateShipping ? (
-                <div className="flex flex-col gap-5">
-                  <strong>سعر الشحن: {stateShipping} </strong>
+              {
+                stateShipping && !isfree ? (
+                  <div className="flex flex-col gap-5">
+                    <strong>سعر الشحن: {stateShipping} </strong>
+                    <strong>
+                      اجمالي بعد الشحن:{" "}
+                      {cartContext?.carts.reduce(
+                        (a: any, v: any) => (a = a + v.total_price),
+                        0
+                      ) + Number(stateShipping)}
+                    </strong>
+                  </div>
+                ) : stateShipping && isfree && (
+                  <div className="flex flex-col gap-5">
+                  <strong>الشحن مجاني 🤑</strong>
                   <strong>
-                    اجمالي بعد الشحن:{" "}
-                    {cartContext?.carts.reduce(
-                      (a: any, v: any) => (a = a + v.total_price),
-                      0
-                    ) + Number(stateShipping)}
-                  </strong>
+                      الاجمالي:{" "}
+                      {cartContext?.carts.reduce(
+                        (a: any, v: any) => (a = a + v.total_price),
+                        0
+                      )}
+                    </strong>
                 </div>
-              ) : null}
+                )
+              }
             </div>
           </div>
         </>

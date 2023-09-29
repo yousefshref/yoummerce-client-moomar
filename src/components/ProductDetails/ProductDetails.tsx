@@ -92,7 +92,7 @@ const ProductDetails = ({ product }: any) => {
             <div className="flex gap-2 my-auto">
               <strong>commission:</strong>
               <p>
-                {30} {EGP}
+                {product?.commission} {EGP}
               </p>
             </div>
           )}
@@ -129,7 +129,7 @@ const ProductDetails = ({ product }: any) => {
                 <Button
                   // className="bg-green-600"
                   fullWidth
-                  variant="outlined"
+                  variant="contained"
                   color="success"
                 >
                   أشتري الأن

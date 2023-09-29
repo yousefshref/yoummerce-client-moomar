@@ -21,12 +21,20 @@ const OrderContext = ({children}) => {
 
 
     const getOrders = async () => {
+      if(userContext?.user?.id == 1){
+        await fetch(`${server}all_orders/?name=${name}&status=${status}&from=${from}&to=${to}`)
+            .then((e) => e.json())
+            .then((e) => {
+              setorder(e)
+            })
+      }else{
         await fetch(`${server}orders/${userContext?.user?.id}?name=${name}&status=${status}&from=${from}&to=${to}&page_number=${currentPage}`)
             .then((e) => e.json())
             .then((e) => {
               setorder(e.results)
               setTotalPages(e.totalPages);
             })
+      }
     }
     useEffect(() => {
         userContext?.user?.id ? getOrders() : null

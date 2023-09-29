@@ -14,6 +14,13 @@ const page = () => {
   const cartContext = useContext(CartContextProvider);
   const userContext = useContext(UserContextProvider);
 
+  // if(userContext?.user?.id == 18){
+  //   console.log('admin');
+  // }
+  // else{
+  //   console.log('not admin');
+  // }
+
   const router = useRouter();
 
   if (cartContext?.carts?.length == 0) {
@@ -57,6 +64,12 @@ const page = () => {
               {EGP}
             </p>
             <strong>:اجمالي الاوردر </strong>
+          </div>
+          <div className="flex gap-3">
+            <p>
+              {cartContext?.carts.length}
+            </p>
+            <strong>:عدد المنتجات </strong>
           </div>
           {userContext?.user?.is_staff && (
             <div className="flex gap-3">

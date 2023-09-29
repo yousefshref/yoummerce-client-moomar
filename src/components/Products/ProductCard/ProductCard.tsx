@@ -23,6 +23,13 @@ const ProductCard = (props: any) => {
       {props?.product?.stock ? (
         <>
           <div className="product_card m-5 my-10 p-5 w-[300px] from-slate-200 bg-gradient-to-b rounded-lg shadow-lg transition-all hover:from-slate-400 hover:shadow-2xl">
+          {
+            props?.product?.free_shipping && (
+              <div className="text-center mb-2">
+                <strong className="text-yellow-600">الشحن مجاني !</strong>
+              </div>
+            )
+          }
             <Swiper slidesPerView={1}>
               {props?.product?.images.map((e: any) => (
                 <SwiperSlide key={e.id}>
@@ -91,25 +98,26 @@ const ProductCard = (props: any) => {
                 >
                   أضف الي السلة
                 </Button>
-                  {/* )
+                {/* )
                 } */}
                 <Link href={{
-                  pathname:'/create_order',
+                  pathname: '/create_order',
                   query: {
                     id: props?.product?.id,
-                    quantity:quantity,
-                    price:props?.product?.sell_price,
-                    s: props?.product?.stock
-                }
+                    quantity: quantity,
+                    price: props?.product?.sell_price,
+                    s: props?.product?.stock,
+                    free_shipping: props?.product?.free_shipping ? props?.product?.free_shipping : null,
+                  }
                 }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="success"
-                  className="bg-green-600"
-                >
-                  أشتري الأن
-                </Button>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="success"
+                    className="bg-green-600"
+                  >
+                    أشتري الأن
+                  </Button>
                 </Link>
               </div>
             </div>

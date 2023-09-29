@@ -23,11 +23,23 @@ const CartContext = ({ children }) => {
     
     const getCarts = async () => {
         await fetch(`${server}cart/${userContext.user.id}`)
-            .then((e) => e.json())
-            .then((e) => setCarts(e))
+        .then((e) => e.json())
+        .then((e) => setCarts(e))
     }
     useEffect(() => {
         userContext?.user?.id ? getCarts() : null
+    }, [userContext?.user?.id])
+    
+    
+
+    const [admincarts, setadmincarts] = useState([])
+    const getAdminCarts = async () => {
+        await fetch(`${server}carts/`)
+            .then((e) => e.json())
+            .then((e) => setadmincarts(e))
+    }
+    useEffect(() => {
+        userContext?.user?.id ? getAdminCarts() : null
     }, [userContext?.user?.id])
     
 
@@ -57,7 +69,7 @@ const CartContext = ({ children }) => {
 
 
     return (
-        <CartContextProvider.Provider value={{ carts, statuses, getCarts }}>
+        <CartContextProvider.Provider value={{ carts, statuses, getCarts, admincarts }}>
             {children}
         </CartContextProvider.Provider>
     )

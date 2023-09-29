@@ -9,6 +9,7 @@ const ProductsContext = (props) => {
   const [category, setCategory] = useState('')
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
+  const [isfree, setisfree] = useState('')
   const [products, setProducts] = useState([])
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +17,7 @@ const ProductsContext = (props) => {
   // pagination
 
   const getProducts = async () => {
-    await fetch(`${server}products/?page_number=${currentPage}&search=${search}&category=${category}&from=${from}&to=${to}`)
+    await fetch(`${server}products/?page_number=${currentPage}&search=${search}&category=${category}&from=${from}&to=${to}&isfree=${isfree}`)
     .then((e) => e.json())
     .then((e) => {
       setProducts(e.results)
@@ -25,7 +26,7 @@ const ProductsContext = (props) => {
   }
   useEffect(() => {
     getProducts()
-  }, [search, category, from, to, currentPage])
+  }, [search, category, from, to, currentPage, isfree])
 
 
 
@@ -42,7 +43,7 @@ const ProductsContext = (props) => {
   }, [])
 
     return (
-      <ProductsContextProvider.Provider value={{products, setSearch, category, setCurrentPage,currentPage,totalPages, setCategory, setFrom, setTo, categories, getProducts}}>
+      <ProductsContextProvider.Provider value={{products, isfree, setisfree, setSearch, category, setCurrentPage,currentPage,totalPages, setCategory, setFrom, setTo, categories, getProducts}}>
           {props.children}
       </ProductsContextProvider.Provider>
   )

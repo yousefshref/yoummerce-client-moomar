@@ -28,7 +28,7 @@ const OrderPreview = ({ order, userContext }: any) => {
     <>
       <div>
         {/* cancel order */}
-        <div className="flex justify-between">
+        <div className="flex justify-between w-fit ms-auto mb-2">
           {order?.is_arrived == 4 ? (
             <Button
               onClick={() => {
@@ -43,7 +43,7 @@ const OrderPreview = ({ order, userContext }: any) => {
           ) : null}
         </div>
         {/* cancel order */}
-        <span>{order?.order_item_info?.length} :عدد المنتجات</span>
+        <div className="text-end">{order?.order_item_info?.length} :عدد المنتجات</div>
         <div className="order flex justify-center gap-5 md:justify-between border p-1 rounded-md my-4 shadow-xl">
           <div className="order_up flex flex-col justify-center">
             <div>

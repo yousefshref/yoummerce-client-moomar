@@ -26,6 +26,21 @@ const Search = () => {
         />
       </div>
 
+      <div className="w-[200px] flex gap-3">
+        <p className="my-auto">توصيل مجاني</p>
+        <input
+          type="checkbox"
+          className="my-auto"
+          onChange={(e) => {
+            if(productContexts.isfree){
+              productContexts.setisfree('')
+            }else{
+              productContexts.setisfree(true)
+            }
+          }}
+        />
+      </div>
+
       <div className="w-[400px]">
         <FormControl fullWidth variant="standard">
           <InputLabel>Select From Categories</InputLabel>
