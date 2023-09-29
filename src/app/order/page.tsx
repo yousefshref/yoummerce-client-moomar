@@ -236,7 +236,7 @@ const page = () => {
             </form>
           </div>
           <div className="finish md:w-[70%] mx-auto w-full mt-10">
-            <div>
+            <div className="w-fit mx-auto">
               {
                 stateShipping && !isfree ? (
                   <div className="flex flex-col gap-5">
@@ -251,7 +251,7 @@ const page = () => {
                   </div>
                 ) : stateShipping && isfree && (
                   <div className="flex flex-col gap-5">
-                  <strong>الشحن مجاني 🤑</strong>
+                  <strong>الشحن مجاني</strong>
                   <strong>
                       الاجمالي:{" "}
                       {cartContext?.carts.reduce(
