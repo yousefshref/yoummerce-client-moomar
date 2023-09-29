@@ -14,8 +14,8 @@ const Search = () => {
     <div
       className="
       search_container px-10 mt-5
-      flex flex-wrap justify-center
-      gap-16"
+      flex flex-wrap justify-start sm:justify-center
+      gap-6"
     >
       <div className="w-[400px]">
         <TextField
@@ -23,21 +23,6 @@ const Search = () => {
           label="Search"
           variant="standard"
           fullWidth
-        />
-      </div>
-
-      <div className="w-[200px] flex gap-3">
-        <p className="my-auto">توصيل مجاني</p>
-        <input
-          type="checkbox"
-          className="my-auto"
-          onChange={(e) => {
-            if(productContexts.isfree){
-              productContexts.setisfree('')
-            }else{
-              productContexts.setisfree(true)
-            }
-          }}
         />
       </div>
 
@@ -78,6 +63,21 @@ const Search = () => {
             fullWidth
           />
         </div>
+      </div>
+
+      <div className="w-fit flex gap-3 shadow-xl p-1">
+        <p className="my-auto">توصيل مجاني</p>
+        <input
+          type="checkbox"
+          className="my-auto"
+          onChange={(e) => {
+            if(productContexts.isfree){
+              productContexts.setisfree('')
+            }else{
+              productContexts.setisfree(true)
+            }
+          }}
+        />
       </div>
     </div>
   );
