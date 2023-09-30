@@ -147,24 +147,9 @@ const Header = (props: any) => {
               }}
             >
               <div>
-                <MenuItem
-                  onClick={() => {
-                    handleLanguage();
-                    handleClose();
-                  }}
-                >
-                  تغيير اللغة
-                </MenuItem>
 
                 {!userContext?.user?.id || !localStorage?.getItem("email") ? (
-                  <MenuItem
-                    onClick={() => {
-                      handleLogin();
-                      handleClose();
-                    }}
-                  >
-                    سجل الدخول
-                  </MenuItem>
+                  null
                 ) : (
                   <MenuItem
                     onClick={() => {
