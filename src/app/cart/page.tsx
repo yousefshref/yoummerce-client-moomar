@@ -55,7 +55,7 @@ const page = () => {
       <div className="create_order px-10 mb-10">
         <h1 className="text-center text-3xl">أطلب الأن 😊</h1>
         <div className="w-[100%] md:w-[70%] mx-auto my-2 p-5 bg-slate-200 rounded-lg shadow-xl flex flex-wrap justify-center gap-16 mt-5">
-          <div className="flex gap-3">
+          <div className="flex gap-3 my-auto">
             <p>
               {cartContext?.carts.reduce(
                 (a: any, v: any) => (a = a + v.total_price),
@@ -65,14 +65,14 @@ const page = () => {
             </p>
             <strong>:اجمالي الاوردر </strong>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 my-auto">
             <p>
               {cartContext?.carts.length}
             </p>
             <strong>:عدد المنتجات </strong>
           </div>
           {userContext?.user?.is_staff && (
-            <div className="flex gap-3">
+            <div className="flex gap-3 my-auto">
               <p>
                 {cartContext?.carts.reduce(
                   (a: any, v: any) => (a = a + v.total_commission),
@@ -90,7 +90,7 @@ const page = () => {
               variant="contained"
               className="bg-green-600"
             >
-              !أطلب الأن
+              <p className="text-2xl text-white">!أطلب الأن</p>
             </Button>
           </div>
         </div>

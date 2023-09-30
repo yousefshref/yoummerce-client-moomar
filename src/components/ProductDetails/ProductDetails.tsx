@@ -53,7 +53,7 @@ const ProductDetails = ({ product }: any) => {
         title={"Yoummerce | " + product?.title}
         description={product?.description}
       />
-      <h1 className="text-center text-3xl mb-2 text-neutral-700 shadow-xl">
+      <h1 className="text-center text-3xl mb-2 text-neutral-700 shadow-xl py-2">
         {product?.title}
       </h1>
       <div className="shadow-xl from-slate-300 bg-gradient-to-br">
@@ -79,7 +79,7 @@ const ProductDetails = ({ product }: any) => {
         </div>
         <div className="flex flex-wrap justify-center gap-10 mt-5 bg-slate-200 p-3 rounded-xl">
           <div className="flex gap-2 my-auto">
-            <strong className="text-green-600">
+            <strong className="text-green-600 text-4xl">
               {product?.sell_price} {EGP}
             </strong>
             {product?.before_disc ? (

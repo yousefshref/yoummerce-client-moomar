@@ -123,6 +123,22 @@ const page = (context  ) => {
               onSubmit={createOrder}
               className="md:w-[70%] mx-auto w-full from-gray-200 bg-gradient-to-t p-4 rounded-lg shadow-2xl"
             >
+            <div className="mt-5 w-full border border-neutral-600 p-1">
+              <select
+                className="w-[100%]"
+                onChange={(e  ) => {
+                  setState(e.target.value.split(',')[0]);
+                  setStateShipping(e.target.value.split(',')[1]);
+                }}
+              >
+                <option value={""}>{"أختر المحافظة"}</option>
+                {states.map((e  ) => (
+                  <option key={e.id} value={[e.id, e.shipping]}>
+                    {e.name}
+                  </option>
+                ))}
+              </select>
+            </div>
               <div>
                 <TextField
                   fullWidth
@@ -131,22 +147,6 @@ const page = (context  ) => {
                   variant="standard"
                   onChange={(e) => setname(e.target.value)}
                 />
-              </div>
-              <div className="mt-5 w-full border border-neutral-600 p-1">
-                <select
-                  className="w-[100%]"
-                  onChange={(e  ) => {
-                    setState(e.target.value.split(',')[0]);
-                    setStateShipping(e.target.value.split(',')[1]);
-                  }}
-                >
-                  <option value={""}>{"أختر المحافظة"}</option>
-                  {states.map((e  ) => (
-                    <option key={e.id} value={[e.id, e.shipping]}>
-                      {e.name}
-                    </option>
-                  ))}
-                </select>
               </div>
               <div className="mt-3">
                 <TextField

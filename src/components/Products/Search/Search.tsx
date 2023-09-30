@@ -65,7 +65,7 @@ const Search = () => {
         </div>
       </div>
 
-      <div className="w-fit flex gap-3 shadow-xl p-1">
+      {/* <div className="w-fit flex gap-3 shadow-xl p-1">
         <p className="my-auto">توصيل مجاني</p>
         <input
           type="checkbox"
@@ -78,7 +78,7 @@ const Search = () => {
             }
           }}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

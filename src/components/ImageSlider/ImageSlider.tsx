@@ -10,7 +10,7 @@ const ImageSlider = ({obj}:any) => {
   
 
   return (
-    <Swiper slidesPerView={1}>
+    <Swiper navigation autoplay pagination={{clickable: true}} slidesPerView={1}>
       {obj?.images?.map((e: any) => (
         <SwiperSlide key={e.id}>
           <span>
