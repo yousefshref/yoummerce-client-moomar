@@ -144,7 +144,7 @@ const page = () => {
             >
             <div className="mt-5 w-full border border-neutral-600 p-1">
               <select
-                className="w-[100%]"
+                className="w-[100%] text-end"
                 onChange={(e: any) => {
                   setState(e.target.value.split(',')[0]);
                   setStateShipping(e.target.value.split(',')[1]);
@@ -159,80 +159,56 @@ const page = () => {
               </select>
             </div>
               <div>
-                <TextField
-                  fullWidth
+                <input
+                className="text-end p-2"
                   id="standard-basic"
-                  label="الأسم"
-                  variant="standard"
                   onChange={(e) => setname(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
+                <input
+                className="text-end p-2"
                   id="standard-basic"
-                  label="العنوان"
-                  variant="standard"
                   onChange={(e) => setaddress(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  inputProps={{
-                    min: 0,
-                    style: { textAlign: "end" },
-                    inputMode: "numeric",
-                    pattern: "[0-9]*",
-                  }} // the change is here
-                  id="standard-basic"
-                  label="رقم الهاتف"
-                  variant="standard"
+                <input
+                className="text-end p-2"
                   onChange={(e) => setphone(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  inputProps={{
-                    min: 0,
-                    style: { textAlign: "end" },
-                    inputMode: "numeric",
-                    pattern: "[0-9]*",
-                  }} // the change is here
-                  id="standard-basic"
-                  label="رقم هاتف اخر (اختياري)"
-                  variant="standard"
+                <input
+                className="text-end p-2"
                   onChange={(e) => setphone2(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  label="الملاحظات (اختياري)"
-                  variant="standard"
-                  multiline
-                  rows={4}
+                <input
+                className="text-end p-2"
                   onChange={(e) => setnote(e.target.value)}
                 />
               </div>
 
-              <Button
-                onClick={() =>
-                  phone?.length == 11 &&
-                    name.length > 0 &&
-                    address.length > 0 &&
-                    state
-                    ? createOrder()
-                    : alert("تحقق من الخانات المطلوبة")
-                }
-                className="bg-green-500 mt-5"
-                style={{ marginTop: "10px" }}
-                color="success"
-                variant="contained"
-              >
-                تم
-              </Button>
+              <div className="w-fit ms-auto">
+                <Button
+                  onClick={() =>
+                    phone?.length == 11 &&
+                      name.length > 0 &&
+                      address.length > 0 &&
+                      state
+                      ? createOrder()
+                      : alert("تحقق من الخانات المطلوبة")
+                  }
+                  className="bg-green-500 mt-5"
+                  style={{ marginTop: "10px" }}
+                  color="success"
+                  variant="contained"
+                >
+                  تم
+                </Button>
+              </div>
             </form>
           </div>
           <div className="finish md:w-[70%] mx-auto w-full mt-10">

@@ -125,7 +125,7 @@ const page = (context  ) => {
             >
             <div className="mt-5 w-full border border-neutral-600 p-1">
               <select
-                className="w-[100%]"
+                className="w-[100%] text-end"
                 onChange={(e  ) => {
                   setState(e.target.value.split(',')[0]);
                   setStateShipping(e.target.value.split(',')[1]);
@@ -140,54 +140,37 @@ const page = (context  ) => {
               </select>
             </div>
               <div>
-                <TextField
-                  fullWidth
-                  id="standard-basic"
-                  label="الأسم"
-                  variant="standard"
+                <input
+                className="text-end p-2"
                   onChange={(e) => setname(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  id="standard-basic"
-                  label="العنوان"
-                  variant="standard"
+                <input
+                  className="text-end p-2"
                   onChange={(e) => setaddress(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  type="tel"
-                  id="standard-basic"
-                  label="رقم الهاتف"
-                  variant="standard"
+                <input
+                  className="text-end p-2"
                   onChange={(e) => setphone(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  type="tel"
-                  id="standard-basic"
-                  label="رقم الهاتف اخر (اخياري)"
-                  variant="standard"
+                <input
+                  className="text-end p-2"
                   onChange={(e) => setphone2(e.target.value)}
                 />
               </div>
               <div className="mt-3">
-                <TextField
-                  fullWidth
-                  label="الملاحظات (اختياري)"
-                  variant="standard"
-                  multiline
-                  rows={4}
+                <input
+                  className="text-end p-2"
                   onChange={(e) => setnote(e.target.value)}
                 />
               </div>
 
+              <div className="w-fit ms-auto">
               <Button
                 onClick={() =>
                   phone?.length == 11 &&
@@ -204,6 +187,7 @@ const page = (context  ) => {
               >
                 تم
               </Button>
+              </div>
             </form>
           </div>
           <div className="finish md:w-[70%] mx-auto w-full mt-10">
