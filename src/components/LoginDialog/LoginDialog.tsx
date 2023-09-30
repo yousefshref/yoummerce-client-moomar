@@ -148,16 +148,9 @@ const LoginDialog = (props:any) => {
                 <div className="mt-5">
                   <TextField onChange={(e) => setemail(e.target.value)} fullWidth label="Email" variant="standard" />
                 </div>
-                {/* <div className="mt-5">
+                 <div className="mt-5">
                   <TextField onChange={(e) => setpassword(e.target.value)} fullWidth label="Password" variant="standard" />
-                  {
-                    passErr ? (
-                    <div>
-                      <p className="text-red-700">{'password should be more than 20 chars'}</p>
-                    </div>
-                    ):null
-                  }
-                </div> */}
+                </div>
                 <div className="mt-5">
                   <Button className="bg-blue-600" onClick={register} variant="contained">انشئ حساب</Button>
                 </div>
