@@ -51,6 +51,7 @@ const page = () => {
               fullWidth
             />
           </div>
+          
           <div className="my-auto">
             <select
               className="bg-neutral-200 p-1 rounded-lg shadow-xl"
@@ -118,6 +119,31 @@ const page = () => {
               </div>
             )}
             <hr />
+
+{/* PAGINATION */}
+<div className="justify-center gap-10 flex mb-10 md:w-[70%] w-[90%] p-5 mx-auto">
+  {orderContext?.currentPage > 1 && (
+    <div>
+      <Button
+        variant="contained"
+        onClick={() => goToPage(orderContext?.currentPage - 1)}
+      >
+        الصفحة السابقة
+      </Button>
+    </div>
+  )}
+  {orderContext?.currentPage < orderContext?.totalPages && (
+    <div>
+      <Button
+        variant="contained"
+        onClick={() => goToPage(orderContext?.currentPage + 1)}
+      >
+        الصفحة التالية
+      </Button>
+    </div>
+  )}
+</div>
+{/* PAGINATION */}
             {orderContext?.order?.map((order: any) => (
               <div key={order.id} className="mt-5">
                 <OrderPreview order={order} userContext={userContext} />
@@ -125,31 +151,6 @@ const page = () => {
             ))}
           </div>
         </div>
-
-        {/* PAGINATION */}
-        <div className="justify-center gap-10 flex mb-10 md:w-[70%] w-[90%] p-5 mx-auto">
-          {orderContext?.currentPage > 1 && (
-            <div>
-              <Button
-                variant="contained"
-                onClick={() => goToPage(orderContext?.currentPage - 1)}
-              >
-                الصفحة السابقة
-              </Button>
-            </div>
-          )}
-          {orderContext?.currentPage < orderContext?.totalPages && (
-            <div>
-              <Button
-                variant="contained"
-                onClick={() => goToPage(orderContext?.currentPage + 1)}
-              >
-                الصفحة التالية
-              </Button>
-            </div>
-          )}
-      </div>
-      {/* PAGINATION */}
       </div>
     </>
   );
