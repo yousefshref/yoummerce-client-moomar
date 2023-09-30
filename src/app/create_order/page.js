@@ -121,7 +121,7 @@ const page = (context  ) => {
             <hr />
             <form
               onSubmit={createOrder}
-              className="md:w-[70%] mx-auto w-full from-gray-200 bg-gradient-to-t p-4 rounded-lg shadow-2xl"
+              className="md:w-[70%] gap-2 flex flex-col mx-auto w-full from-gray-200 bg-gradient-to-t p-4 rounded-lg shadow-2xl"
             >
             <div className="mt-5 w-full border border-neutral-600 p-1">
               <select
@@ -141,31 +141,36 @@ const page = (context  ) => {
             </div>
               <div>
                 <input
-                className="text-end p-2"
+                placeholder="الاسم"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setname(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                  className="text-end p-2"
+                placeholder="العنوان"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setaddress(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                  className="text-end p-2"
+                placeholder="رقم الهاتف"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setphone(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                  className="text-end p-2"
+                placeholder="رقم الهاتف الاحتياطي (اختياري)"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setphone2(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                  className="text-end p-2"
+                placeholder="الملاحظات"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setnote(e.target.value)}
                 />
               </div>

@@ -160,33 +160,38 @@ const page = () => {
             </div>
               <div>
                 <input
-                className="text-end p-2"
+                placeholder="الاسم"
+                className="text-end p-2 w-full border border-neutral-700"
                   id="standard-basic"
                   onChange={(e) => setname(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                className="text-end p-2"
+                placeholder="العنوان"
+                className="text-end p-2 w-full border border-neutral-700"
                   id="standard-basic"
                   onChange={(e) => setaddress(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                className="text-end p-2"
+                placeholder="رقم الهاتف"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setphone(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                className="text-end p-2"
+                placeholder="رقم الهاتف الاحتياطي (اختياري)"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setphone2(e.target.value)}
                 />
               </div>
               <div className="mt-3">
                 <input
-                className="text-end p-2"
+                placeholder="الملاحظات"
+                className="text-end p-2 w-full border border-neutral-700"
                   onChange={(e) => setnote(e.target.value)}
                 />
               </div>
